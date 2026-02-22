@@ -10,7 +10,7 @@
 					<slot name="title" :open="isOpen" />
 					<DropdownIcon
 						v-if="!forceOpen"
-						class="ml-auto size-5 transition-transform duration-300 shrink-0"
+						class="ml-auto size-5 motion-safe:transition-transform motion-safe:duration-300 shrink-0"
 						:class="{ 'rotate-180': isOpen }"
 					/>
 				</div>

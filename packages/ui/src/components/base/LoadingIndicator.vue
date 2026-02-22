@@ -110,4 +110,21 @@
 		transform: translateX(80%);
 	}
 }
+
+@media (prefers-reduced-motion: reduce) {
+	.title::after {
+		animation: none;
+		content: '...';
+	}
+
+	.placeholder {
+		animation: none;
+	}
+
+	.placeholder::before {
+		animation: none;
+		transform: none;
+		background-image: none;
+	}
+}
 </style>

@@ -66,4 +66,26 @@ onUnmounted(() => {
 		bottom: var(--size-mobile-navbar-height-expanded);
 	}
 }
+
+@media (prefers-reduced-motion: reduce) {
+	.floating-action-bar {
+		transition: none;
+	}
+
+	.floating-action-bar-enter-active {
+		transition: none;
+	}
+
+	.floating-action-bar-leave-active {
+		transition: none;
+	}
+
+	.floating-action-bar-enter-from {
+		transform: none;
+	}
+
+	.floating-action-bar-leave-to {
+		transform: none;
+	}
+}
 </style>

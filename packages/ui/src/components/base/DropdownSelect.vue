@@ -348,4 +348,24 @@ const isChildOfDropdown = (element) => {
 		border-radius: 0 0 var(--radius-md) var(--radius-md);
 	}
 }
+
+@media (prefers-reduced-motion: reduce) {
+	.animated-dropdown *,
+	.options-enter-active,
+	.options-leave-active {
+		transition: none !important;
+		animation: none !important;
+	}
+
+	.options-enter-from,
+	.options-leave-to,
+	.options-enter-to,
+	.options-leave-from {
+		transform: none !important;
+	}
+
+	.selected .arrow {
+		transition: none !important;
+	}
+}
 </style>

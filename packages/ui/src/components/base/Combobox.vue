@@ -4,7 +4,7 @@
 			ref="triggerRef"
 			role="button"
 			tabindex="0"
-			class="relative cursor-pointer flex min-h-5 w-full items-center justify-between overflow-hidden rounded-xl bg-button-bg px-4 py-2.5 text-left transition-all duration-200 text-button-text hover:bg-button-bgHover active:bg-button-bgActive"
+			class="relative cursor-pointer flex min-h-5 w-full items-center justify-between overflow-hidden rounded-xl bg-button-bg px-4 py-2.5 text-left motion-safe:transition-all motion-safe:duration-200 text-button-text hover:bg-button-bgHover active:bg-button-bgActive"
 			:class="[
 				triggerClasses,
 				{
@@ -35,7 +35,7 @@
 				<slot name="suffix"></slot>
 				<ChevronLeftIcon
 					v-if="showChevron"
-					class="size-5 shrink-0 transition-transform duration-300"
+					class="size-5 shrink-0 motion-safe:transition-transform motion-safe:duration-300"
 					:class="isOpen ? (openDirection === 'down' ? 'rotate-90' : '-rotate-90') : '-rotate-90'"
 				/>
 			</div>

@@ -5,7 +5,7 @@
 	>
 		<slot />
 		<ChevronRightIcon
-			class="h-5 w-5 stroke-[3px] group-hover:translate-x-1 transition-transform group-hover:text-brand"
+			class="h-5 w-5 stroke-[3px] motion-safe:group-hover:translate-x-1 motion-safe:transition-transform group-hover:text-brand"
 		/>
 	</AutoLink>
 </template>

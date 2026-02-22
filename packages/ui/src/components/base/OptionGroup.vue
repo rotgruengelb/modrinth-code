@@ -17,7 +17,7 @@
 			<slot :option="option" :selected="modelValue === option" />
 		</button>
 		<div
-			class="navtabs-transition pointer-events-none absolute h-[calc(100%-0.5rem)] overflow-hidden rounded-full bg-button-bgSelected p-1"
+			class="motion-safe:navtabs-transition pointer-events-none absolute h-[calc(100%-0.5rem)] overflow-hidden rounded-full bg-button-bgSelected p-1"
 			:style="{
 				left: sliderLeftPx,
 				top: sliderTopPx,
@@ -55,6 +55,10 @@ const optionButtons = ref()
 
 const initialized = ref(false)
 
+const prefersReducedMotion = window.matchMedia(
+	'(prefers-reduced-motion: reduce)',
+).matches
+
 function setOption(option: T) {
 	modelValue.value = option
 }
@@ -73,6 +77,15 @@ function startAnimation(index: number) {
 		top: el.offsetTop,
 		right: el.offsetParent.offsetWidth - el.offsetLeft - el.offsetWidth,
 		bottom: el.offsetParent.offsetHeight - el.offsetTop - el.offsetHeight,
+	}
+
+	if (prefersReducedMotion) {
+		sliderLeft.value = newValues.left
+		sliderRight.value = newValues.right
+		sliderTop.value = newValues.top
+		sliderBottom.value = newValues.bottom
+		initialized.value = true
+		return
 	}
 
 	if (sliderLeft.value === 4 && sliderRight.value === 4) {
@@ -124,5 +137,11 @@ onMounted(() => {
 
 .card-shadow {
 	box-shadow: var(--shadow-card);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.navtabs-transition  {
+		transition: none;
+	}
 }
 </style>
