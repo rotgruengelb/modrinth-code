@@ -8,7 +8,9 @@ const props = defineProps<{
 watch(
 	() => props.shown,
 	(shown) => {
-		document.body.classList.toggle('floating-action-bar-shown', shown)
+		if (typeof document !== 'undefined') {
+			document.body.classList.toggle('floating-action-bar-shown', shown)
+		}
 	},
 	{ immediate: true },
 )
