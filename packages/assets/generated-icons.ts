@@ -3,6 +3,8 @@
 
 import type { FunctionalComponent, SVGAttributes } from 'vue'
 
+export type IconComponent = FunctionalComponent<SVGAttributes>
+
 import _AffiliateIcon from './icons/affiliate.svg?component'
 import _AlignLeftIcon from './icons/align-left.svg?component'
 import _ArchiveIcon from './icons/archive.svg?component'
@@ -142,6 +144,7 @@ import _ManageIcon from './icons/manage.svg?component'
 import _MaximizeIcon from './icons/maximize.svg?component'
 import _MemoryStickIcon from './icons/memory-stick.svg?component'
 import _MessageIcon from './icons/message.svg?component'
+import _MessagesSquareIcon from './icons/messages-square.svg?component'
 import _MicrophoneIcon from './icons/microphone.svg?component'
 import _MinimizeIcon from './icons/minimize.svg?component'
 import _MinusIcon from './icons/minus.svg?component'
@@ -325,8 +328,6 @@ import _XCircleIcon from './icons/x-circle.svg?component'
 import _ZoomInIcon from './icons/zoom-in.svg?component'
 import _ZoomOutIcon from './icons/zoom-out.svg?component'
 
-export type IconComponent = FunctionalComponent<SVGAttributes>
-
 export const AffiliateIcon = _AffiliateIcon
 export const AlignLeftIcon = _AlignLeftIcon
 export const ArchiveIcon = _ArchiveIcon
@@ -466,6 +467,7 @@ export const ManageIcon = _ManageIcon
 export const MaximizeIcon = _MaximizeIcon
 export const MemoryStickIcon = _MemoryStickIcon
 export const MessageIcon = _MessageIcon
+export const MessagesSquareIcon = _MessagesSquareIcon
 export const MicrophoneIcon = _MicrophoneIcon
 export const MinimizeIcon = _MinimizeIcon
 export const MinusIcon = _MinusIcon

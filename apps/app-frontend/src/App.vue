@@ -65,6 +65,7 @@ import IncompatibilityWarningModal from '@/components/ui/install_flow/Incompatib
 import InstallConfirmModal from '@/components/ui/install_flow/InstallConfirmModal.vue'
 import ModInstallModal from '@/components/ui/install_flow/ModInstallModal.vue'
 import InstanceCreationModal from '@/components/ui/InstanceCreationModal.vue'
+import MinecraftAuthErrorModal from '@/components/ui/minecraft-auth-error-modal/MinecraftAuthErrorModal.vue'
 import AppSettingsModal from '@/components/ui/modal/AppSettingsModal.vue'
 import AuthGrantFlowWaitModal from '@/components/ui/modal/AuthGrantFlowWaitModal.vue'
 import NavButton from '@/components/ui/NavButton.vue'
@@ -77,7 +78,7 @@ import UpdateToast from '@/components/ui/UpdateToast.vue'
 import URLConfirmModal from '@/components/ui/URLConfirmModal.vue'
 import { useCheckDisableMouseover } from '@/composables/macCssFix.js'
 import { hide_ads_window, init_ads_window, show_ads_window } from '@/helpers/ads.js'
-import { debugAnalytics, initAnalytics, optOutAnalytics, trackEvent } from '@/helpers/analytics'
+import { debugAnalytics, initAnalytics, trackEvent } from '@/helpers/analytics'
 import { check_reachable } from '@/helpers/auth.js'
 import { get_user } from '@/helpers/cache.js'
 import { command_listener, warning_listener } from '@/helpers/events.js'
@@ -271,12 +272,11 @@ async function setupApp() {
 		isMaximized.value = await getCurrentWindow().isMaximized()
 	})
 
-	initAnalytics()
-	if (!telemetry) {
-		optOutAnalytics()
+	if (telemetry) {
+		initAnalytics()
+		if (dev) debugAnalytics()
+		trackEvent('Launched', { version, dev, onboarded })
 	}
-	if (dev) debugAnalytics()
-	trackEvent('Launched', { version, dev, onboarded })
 
 	if (!dev) document.addEventListener('contextmenu', (event) => event.preventDefault())
 
@@ -389,6 +389,7 @@ loading.setEnabled(false)
 
 const error = useError()
 const errorModal = ref()
+const minecraftAuthErrorModal = ref()
 
 const install = useInstall()
 const modInstallModal = ref()
@@ -467,6 +468,7 @@ onMounted(() => {
 	invoke('show_window')
 
 	error.setErrorModal(errorModal.value)
+	error.setMinecraftAuthErrorModal(minecraftAuthErrorModal.value)
 
 	install.setIncompatibilityWarningModal(incompatibilityWarningModal)
 	install.setInstallConfirmModal(installConfirmModal)
@@ -1132,6 +1134,7 @@ provideAppUpdateDownloadProgress(appUpdateDownload)
 	<I18nDebugPanel />
 	<NotificationPanel has-sidebar />
 	<ErrorModal ref="errorModal" />
+	<MinecraftAuthErrorModal ref="minecraftAuthErrorModal" />
 	<ModInstallModal ref="modInstallModal" />
 	<IncompatibilityWarningModal ref="incompatibilityWarningModal" />
 	<InstallConfirmModal ref="installConfirmModal" />
